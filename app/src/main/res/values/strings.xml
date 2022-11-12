@@ -17,7 +17,13 @@
     <string name="nav_header_desc">Navigation header</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_new_request">New Request</string>
-    <string name="menu_view_account">View Account</string>
+    <string name="menu_new_request">New Donor Request</string>
+    <string name="menu_view_account">View All Account</string>
     <string name="menu_logout">Log out</string>
+    <string name="admin">Admin</string>
+    <string name="hello_blank_fragment">hello blank fragment</string>
+    <string name="feature_text">This screen will come next module</string>
+    <string name="feature_admin_text">Admin home contains total number of user in the applications. \n Donor types and user request counts.
+       \n This screen will come next module.</string>
+
 </resources>
