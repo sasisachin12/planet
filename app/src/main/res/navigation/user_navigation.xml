@@ -3,7 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/userHomeFragment">
+
+    <fragment
+        android:id="@+id/userHomeFragment"
+        android:name="aaa.android.organdonation.user.UserHomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_user_home" />
 
     <fragment
         android:id="@+id/nav_home"
@@ -17,10 +23,10 @@
         tools:layout="@layout/fragment_new_request" />
 
     <fragment
-        android:id="@+id/adminHomeFragment"
+        android:id="@+id/nav_gallery"
         android:name="aaa.android.organdonation.admin.AdminHomeFragment"
         android:label="@string/admin"
-        tools:layout="@layout/fragment_admin_home" />
+        tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/userLoginFragment"
@@ -32,9 +38,5 @@
         android:name="aaa.android.organdonation.user.UserSignUpFragment"
         android:label="@string/menu_logout"
         tools:layout="@layout/fragment_slideshow" />
-    <fragment
-        android:id="@+id/userHomeFragment"
-        android:name="aaa.android.organdonation.user.UserHomeFragment"
-        android:label="@string/menu_logout"
-        tools:layout="@layout/fragment_slideshow" />
+
 </navigation>

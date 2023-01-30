@@ -1,7 +1,7 @@
-package aaa.android.organdonation.admin
+package aaa.android.organdonation.user
 
 import aaa.android.organdonation.R
-import aaa.android.organdonation.databinding.FragmentHomeBinding
+import aaa.android.organdonation.databinding.FragmentUserLoginBinding
 import aaa.android.organdonation.util.AppConstant.ADMIN_USER_NAME
 import aaa.android.organdonation.util.AppConstant.ADMIN_USER_PASSWORD
 import android.os.Bundle
@@ -14,9 +14,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 
 
-class AdminLoginFragment : Fragment() {
+class UserLoginFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentUserLoginBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,7 +25,7 @@ class AdminLoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentUserLoginBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root
@@ -39,10 +39,16 @@ class AdminLoginFragment : Fragment() {
             if (userName.lowercase() == ADMIN_USER_NAME.lowercase() &&
                 userPassWord.lowercase() == ADMIN_USER_PASSWORD.lowercase()
             ) {
-                findNavController().navigate(R.id.adminHomeFragment)
+                findNavController().navigate(R.id.userHomeFragment)
             } else {
                 Toast.makeText(requireContext(), "Invalid Data", Toast.LENGTH_SHORT).show()
             }
+
+
+        }
+        _binding?.textCreateAccount?.setOnClickListener {
+
+            findNavController().navigate(R.id.userSignUpFragment)
 
 
         }

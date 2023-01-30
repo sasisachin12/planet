@@ -1,7 +1,8 @@
-package aaa.android.organdonation.admin
+package aaa.android.organdonation.user
 
 import aaa.android.organdonation.R
 import aaa.android.organdonation.databinding.ActivityAdminHomeBinding
+import aaa.android.organdonation.databinding.ActivityUserHomeBinding
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.Menu
@@ -18,20 +19,20 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 
 
-class AdminHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class UserHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityAdminHomeBinding
+    private lateinit var binding: ActivityUserHomeBinding
     lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityAdminHomeBinding.inflate(layoutInflater)
+        binding = ActivityUserHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.appBarAdminHome.toolbar)
 
-        navController = findNavController(R.id.nav_host_fragment_content_admin_home)
+        navController = findNavController(R.id.nav_host_fragment_content_user_home)
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
 
@@ -45,6 +46,7 @@ class AdminHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         navView.setNavigationItemSelectedListener(this)
+        navController.navigate(R.id.userLoginFragment)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -61,7 +63,7 @@ class AdminHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_home -> {
-                navController.navigate(R.id.adminHomeFragment)
+
             }
             R.id.nav_gallery -> {
                 navController.navigate(R.id.nav_gallery)
