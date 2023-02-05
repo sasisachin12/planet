@@ -26,5 +26,8 @@
     <string name="feature_admin_text">Admin home contains total number of user in the applications. \n Donor types and user request counts.
        \n This screen will come next module.</string>
     <string name="added_success_msg">Account request send to the Admin</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawer</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
 
 </resources>

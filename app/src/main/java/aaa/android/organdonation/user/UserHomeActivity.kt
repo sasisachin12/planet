@@ -1,14 +1,16 @@
 package aaa.android.organdonation.user
 
 import aaa.android.organdonation.R
-import aaa.android.organdonation.databinding.ActivityAdminHomeBinding
 import aaa.android.organdonation.databinding.ActivityUserHomeBinding
+import aaa.android.organdonation.util.AppConstant.USER_NAME_KEY
+import aaa.android.organdonation.util.AppConstant.USER_PASSWORD_KEY
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -46,7 +48,17 @@ class UserHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         navView.setNavigationItemSelectedListener(this)
-        navController.navigate(R.id.userLoginFragment)
+        val userName = intent?.getStringExtra(USER_NAME_KEY)
+        val userPassword = intent?.getStringExtra(USER_PASSWORD_KEY)
+        if (userName?.isNotEmpty() == true) {
+            val bundle = bundleOf(
+                USER_NAME_KEY to userName,
+                USER_PASSWORD_KEY to userPassword
+            )
+            navController.navigate(R.id.userLoginFragment, bundle)
+        } else {
+            navController.navigate(R.id.userLoginFragment)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

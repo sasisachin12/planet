@@ -22,19 +22,18 @@ class AdminHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityAdminHomeBinding
-    lateinit var navController: NavController
+    //lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityAdminHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setSupportActionBar(binding.appBarAdminHome.toolbar)
 
-        navController = findNavController(R.id.nav_host_fragment_content_admin_home)
+      //  navController = findNavController(R.id.nav_host_fragment_content_admin_home)
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
-
+        val navController = findNavController(R.id.nav_host_fragment_content_navigation_drawer)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
@@ -54,17 +53,17 @@ class AdminHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
 
     override fun onSupportNavigateUp(): Boolean {
-
+        val navController = findNavController(R.id.nav_host_fragment_content_admin_home)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_home -> {
-                navController.navigate(R.id.adminHomeFragment)
+                //navController.navigate(R.id.adminHomeFragment)
             }
             R.id.nav_gallery -> {
-                navController.navigate(R.id.nav_gallery)
+               // navController.navigate(R.id.nav_gallery)
             }
             R.id.nav_logout -> {
                 val builder: AlertDialog.Builder = AlertDialog.Builder(this)

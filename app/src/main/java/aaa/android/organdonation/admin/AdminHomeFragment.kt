@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
@@ -75,7 +76,10 @@ class AdminHomeFragment : Fragment(), ListItemClickListener,
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity?)?.supportActionBar?.show()
+        /*(activity as AppCompatActivity?)?.supportActionBar?.setHomeButtonEnabled(true)
+        (activity as AppCompatActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity?)?.supportActionBar?.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP)
+        (activity as AppCompatActivity?)?.supportActionBar?.show()*/
     }
 
     override fun onDeleteItemClick(item: Any) {
@@ -93,7 +97,8 @@ class AdminHomeFragment : Fragment(), ListItemClickListener,
         intent.putExtra(Intent.EXTRA_SUBJECT, "Your Donor Account created Successfully")
         intent.putExtra(
             Intent.EXTRA_TEXT,
-            "Your Donor Account created Successfully. Your User name : ${item.mobile} \n Password: ${item.password} \n"
+            "Your Donor Account created Successfully. Your User name : ${item.mobile} \n Password: ${item.password} \n +\n" +
+                    " Login App : www.donorapp.com/signup?username=${item.mobile}&password=${item.password}"
 
         )
         activity?.startActivity(Intent.createChooser(intent, "Choose email..."))

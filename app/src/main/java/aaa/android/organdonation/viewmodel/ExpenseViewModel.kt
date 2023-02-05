@@ -22,6 +22,7 @@ class ExpenseViewModel(app: Application) : AndroidViewModel(app) {
     val allExpenses: LiveData<List<ExpenseInfo>>
     val allSignUpRequest: LiveData<List<UserSignUp>>
     val currentData = CompletableDeferred<List<ExpenseInfo>>()
+    val loginData = CompletableDeferred<List<UserSignUp>>()
     val insertResponse = CompletableDeferred<Long>()
     val updateStatusResponse = CompletableDeferred<Int>()
     val searchDataList : LiveData<List<UserSignUp>>
@@ -79,12 +80,12 @@ class ExpenseViewModel(app: Application) : AndroidViewModel(app) {
         return updateStatusResponse.await()
     }
 
-    suspend fun getExpense(mobile:String,password:String): LiveData<List<UserSignUp>> {
+    suspend fun getuserLoginCheck(mobile:String,password:String): List<UserSignUp> {
         viewModelScope.launch(Dispatchers.IO) {
             val result = repository.getuserLoginCheck(mobile, password)
-            //searchData.complete(result)
+            loginData.complete(result)
         }
-        return searchDataList.await()
+        return loginData.await()
     }
 
 }
