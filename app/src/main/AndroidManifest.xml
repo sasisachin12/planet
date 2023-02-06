@@ -13,13 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OrganDonation"
         tools:targetApi="31">
-        <activity
-            android:name=".NavigationDrawer"
-            android:exported="true"
-            android:label="@string/title_activity_navigation_drawer"
-            android:theme="@style/Theme.OrganDonation.NoActionBar" >
 
-        </activity>
         <activity
             android:name=".admin.AdminHomeActivity"
             android:exported="true"

@@ -76,10 +76,7 @@ class AdminHomeFragment : Fragment(), ListItemClickListener,
 
     override fun onResume() {
         super.onResume()
-        /*(activity as AppCompatActivity?)?.supportActionBar?.setHomeButtonEnabled(true)
-        (activity as AppCompatActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        (activity as AppCompatActivity?)?.supportActionBar?.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP)
-        (activity as AppCompatActivity?)?.supportActionBar?.show()*/
+        //(activity as AdminHomeActivity?)?.showHamburIcon()
     }
 
     override fun onDeleteItemClick(item: Any) {

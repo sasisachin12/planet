@@ -10,7 +10,7 @@
 
 
     <include
-        android:id="@+id/app_bar_admin_home"
+        android:id="@+id/app_bar_user_home"
         layout="@layout/app_bar_user_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

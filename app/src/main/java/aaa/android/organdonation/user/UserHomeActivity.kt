@@ -25,16 +25,16 @@ class UserHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityUserHomeBinding
-    lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityUserHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.appBarAdminHome.toolbar)
+        setSupportActionBar(binding.appBarUserHome.toolbar)
 
-        navController = findNavController(R.id.nav_host_fragment_content_user_home)
+        val navController = findNavController(R.id.nav_host_fragment_content_user_home)
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
 
@@ -68,7 +68,7 @@ class UserHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     }
 
     override fun onSupportNavigateUp(): Boolean {
-
+        val navController = findNavController(R.id.nav_host_fragment_content_user_home)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
@@ -78,7 +78,7 @@ class UserHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
             }
             R.id.nav_gallery -> {
-                navController.navigate(R.id.nav_gallery)
+                //navController.navigate(R.id.nav_gallery)
             }
             R.id.nav_logout -> {
                 val builder: AlertDialog.Builder = AlertDialog.Builder(this)
