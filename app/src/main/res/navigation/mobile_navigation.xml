@@ -3,38 +3,60 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/adminHomeFragment">
 
-    <fragment
-        android:id="@+id/nav_home"
-        android:name="aaa.android.organdonation.admin.AdminLoginFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
-    <fragment
-        android:id="@+id/nav_new_request"
-        android:name="aaa.android.organdonation.admin.NewRequestFragment"
-        android:label="@string/menu_new_request"
-        tools:layout="@layout/fragment_new_request" />
+
+
 
     <fragment
         android:id="@+id/adminHomeFragment"
         android:name="aaa.android.organdonation.admin.AdminHomeFragment"
         android:label="@string/admin"
         tools:layout="@layout/fragment_admin_home" />
+    <fragment
+        android:id="@+id/adminDonorDetailsFragment"
+        android:name="aaa.android.organdonation.admin.AdminDonorDetailsFragment"
+        android:label="Donor Request"
+        tools:layout="@layout/fragment_admin_home" />
 
     <fragment
-        android:id="@+id/userLoginFragment"
-        android:name="aaa.android.organdonation.user.UserLoginFragment"
-        android:label="@string/menu_logout"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/adminViewAllVerifiedAccountFragment"
+        android:name="aaa.android.organdonation.admin.AdminViewAllVerifiedAccountFragment"
+        android:label="Donor"
+        tools:layout="@layout/fragment_admin_home" />
+
     <fragment
-        android:id="@+id/userSignUpFragment"
-        android:name="aaa.android.organdonation.user.UserSignUpFragment"
-        android:label="@string/menu_logout"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/adminViewAllAccountHomeFragment"
+        android:name="aaa.android.organdonation.admin.AdminViewAllAccountHomeFragment"
+        android:label="Donor"
+        tools:layout="@layout/fragment_admin_home" />
+
+    <fragment
+        android:id="@+id/hospitalAddFragment"
+        android:name="aaa.android.organdonation.admin.HospitalAddFragment"
+        android:label="@string/admin"
+        tools:layout="@layout/fragment_admin_home" />
+
+    <fragment
+        android:id="@+id/hospitalViewFragment"
+        android:name="aaa.android.organdonation.admin.HospitalViewFragment"
+        android:label="@string/admin"
+        tools:layout="@layout/fragment_admin_home" />
+
+    <fragment
+        android:id="@+id/hospitialDonorFormFragment"
+        android:name="aaa.android.organdonation.admin.HospitialDonorFormFragment"
+        android:label="@string/admin"
+        tools:layout="@layout/fragment_admin_home" />
     <fragment
         android:id="@+id/userHomeFragment"
         android:name="aaa.android.organdonation.user.UserHomeFragment"
-        android:label="@string/menu_logout"
-        tools:layout="@layout/fragment_slideshow" />
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_user_home" />
+    <fragment
+        android:id="@+id/adminNotificationFragment"
+        android:name="aaa.android.organdonation.admin.AdminNotificationFragment"
+        android:label="Notification"
+        tools:layout="@layout/fragment_user_home" />
+
 </navigation>

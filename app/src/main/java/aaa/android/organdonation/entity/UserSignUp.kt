@@ -17,7 +17,7 @@ class UserSignUp(
     @ColumnInfo(name = "status") val status: String
 )
 
-@Entity(tableName = "user_signup_table")
+@Entity(tableName = "donor_form_details")
 class DonorFormDetails(
     @PrimaryKey(autoGenerate = true) val id: Int?,
     @field:TypeConverters(DateConverters::class)
@@ -33,4 +33,23 @@ class DonorFormDetails(
     @ColumnInfo(name = "state") val state: String,
     @ColumnInfo(name = "country") val country: String,
     @ColumnInfo(name = "address") val address: String,
+    @ColumnInfo(name = "etMedicalCondition") val etMedicalCondition: String,
+    @ColumnInfo(name = "registeruser") val registeruser: Int,
+    @ColumnInfo(name = "hospital") val hospital: String,
+    @ColumnInfo(name = "hospital_city") val hospital_city: String,
+)
+
+
+@Entity(tableName = "hospital")
+class Hospital(
+    @PrimaryKey(autoGenerate = true) val id: Int?,
+    @field:TypeConverters(DateConverters::class)
+    @ColumnInfo(name = "name") val name: String,
+    @ColumnInfo(name = "speciality") val speciality: String,
+    @ColumnInfo(name = "city") val city: String,
+    @ColumnInfo(name = "state") val state: String,
+    @ColumnInfo(name = "country") val country: String,
+    @ColumnInfo(name = "address") val address: String,
+    @ColumnInfo(name = "contactnumber") val contactnumber: String,
+    @ColumnInfo(name = "status") val status: String,
 )

@@ -4,12 +4,15 @@ import aaa.android.organdonation.R
 import aaa.android.organdonation.databinding.ActivityAdminHomeBinding
 
 import android.content.DialogInterface
+
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -51,7 +54,7 @@ class AdminHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         navView.setupWithNavController(navController)
         navView.setNavigationItemSelectedListener(this)
 
-       /* val toggle = ActionBarDrawerToggle(
+        val toggle = ActionBarDrawerToggle(
             this,
             binding.drawerLayout,
             binding.appBarAdminHome.toolbar,
@@ -59,7 +62,7 @@ class AdminHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             R.string.navigation_drawer_close
         )
         binding.drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()*/
+        toggle.syncState()
 
         navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, args: Bundle? ->
             /* if (nd.id == nc.graph.startDestinationId) {
@@ -86,12 +89,23 @@ class AdminHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_content_admin_home)
         when (item.itemId) {
             R.id.nav_home -> {
-                //navController.navigate(R.id.adminHomeFragment)
+                navController.navigate(R.id.adminHomeFragment)
             }
             R.id.nav_gallery -> {
-                // navController.navigate(R.id.nav_gallery)
+                navController.navigate(R.id.adminDonorDetailsFragment)
+            }
+            R.id.nav_slideshow -> {
+                navController.navigate(R.id.adminViewAllAccountHomeFragment)
+            }
+            R.id.nav_search_orgon -> {
+                navController.navigate(R.id.userHomeFragment)
+            }
+
+            R.id.nav_notification -> {
+                navController.navigate(R.id.adminNotificationFragment)
             }
             R.id.nav_logout -> {
                 val builder: AlertDialog.Builder = AlertDialog.Builder(this)
@@ -109,6 +123,7 @@ class AdminHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
             }
         }
+        binding.drawerLayout.close()
         return false
 
     }
@@ -127,16 +142,16 @@ class AdminHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
      }
  */
     // Enable the drawer and disable up button
-   /* private fun useHamburgerButton() {
-        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-        isUpButton = false
-    }
+    /* private fun useHamburgerButton() {
+         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+         isUpButton = false
+     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if (isUpButton) {
-            val navController = findNavController(R.id.nav_host_fragment_content_admin_home)
-            useHamburgerButton()
-            true
-        } else super.onOptionsItemSelected(item)
-    }*/
+     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+         return if (isUpButton) {
+             val navController = findNavController(R.id.nav_host_fragment_content_admin_home)
+             useHamburgerButton()
+             true
+         } else super.onOptionsItemSelected(item)
+     }*/
 }

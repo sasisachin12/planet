@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="BrushingChartFilterColor">
+        <item>@color/green200</item>
+        <item>@color/yellow200</item>
+        <item>@color/secondaryLight</item>
+        <item>@color/green500</item>
+        <item>@color/orange</item>
+        <item>@color/green200</item>
+    </array>
+    <array name="BrushingChartColor">
+        <item>@color/secondaryLight</item>
+        <item>@color/orange</item>
+        <item>@color/green200</item>
+        <item>@color/green500</item>
+        <item>@color/green200</item>
+        <item>@color/yellow200</item>
+        <item>@color/secondary200</item>
+    </array>
+
+</resources>

@@ -17,6 +17,16 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_view_account" />
         <item
+            android:id="@+id/nav_search_orgon"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Search Orgon" />
+        <item
+            android:id="@+id/nav_notification"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Notification" />
+
+
+        <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_logout" />

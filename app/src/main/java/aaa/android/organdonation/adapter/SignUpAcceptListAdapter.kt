@@ -11,7 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class SignUpAcceptListAdapter internal constructor(
-    context: Context, val sendMailClickListener: SendMailClickListener
+    context: Context, val sendMailClickListener: SendMailClickListener? = null
 ) : RecyclerView.Adapter<SignUpAcceptListAdapter.ViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
@@ -38,8 +38,13 @@ class SignUpAcceptListAdapter internal constructor(
             holder.mobile.text = item.mobile
             holder.email.text = item.email
             holder.accept.setOnClickListener {
-                sendMailClickListener.acceptMailClickListener(item)
+                sendMailClickListener?.acceptMailClickListener(item)
 
+            }
+            if (item.status == "PV") {
+                holder.accept.visibility = View.VISIBLE
+            } else {
+                holder.accept.visibility = View.INVISIBLE
             }
         }
 

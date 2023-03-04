@@ -26,7 +26,7 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/name"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_16dp"
@@ -79,7 +79,7 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/age"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_16dp"
@@ -92,16 +92,27 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/blood_group"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_16dp"
             android:layout_marginTop="@dimen/dimen_16dp"
             android:hint="Blood group"
-            android:inputType="number"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/age" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_medical_condition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:hint="Medical Condition"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/blood_group" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title_donote"
@@ -112,7 +123,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/blood_group" />
+            app:layout_constraintTop_toBottomOf="@+id/et_medical_condition" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/full_body"
@@ -175,7 +186,7 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/emergency_name"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_16dp"
@@ -187,7 +198,7 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/emergency_relationship"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_16dp"
@@ -199,7 +210,7 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/emergency_phone"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_16dp"
@@ -212,19 +223,20 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/emergency_address"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_16dp"
             android:layout_marginTop="@dimen/dimen_16dp"
-            android:hint="Mobile"
+            android:minLines="4"
+            android:hint="Address"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emergency_phone" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/emergency_city"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_16dp"
@@ -236,7 +248,7 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/emergency_state"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_16dp"
@@ -248,7 +260,7 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/emergency_country"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_16dp"
@@ -259,7 +271,7 @@
             app:layout_constraintTop_toBottomOf="@+id/emergency_state" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_16dp"

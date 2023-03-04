@@ -7,6 +7,8 @@ import aaa.android.organdonation.util.utils.convertDateToLong
 import aaa.android.organdonation.util.utils.getCurrentMonthEnd
 import aaa.android.organdonation.util.utils.getCurrentMonthStart
 import aaa.android.organdonation.dao.ExpenseDao
+import aaa.android.organdonation.entity.DonorFormDetails
+import aaa.android.organdonation.entity.Hospital
 
 import androidx.lifecycle.LiveData
 
@@ -26,6 +28,11 @@ class Repository(private val expenseDao: ExpenseDao) {
     val allSignUpRequest: LiveData<List<UserSignUp>> =
         expenseDao.getAllUSerSignUp()
 
+    val allDonorFomRequest: LiveData<List<DonorFormDetails>> =
+        expenseDao.getDonorFormRequestDetails()
+
+    val getHospitalDetails: LiveData<List<Hospital>> =
+        expenseDao.getHospitalDetails()
 
     suspend fun insert(expenseInfo: ExpenseInfo): Long {
         return expenseDao.insert(expenseInfo)
@@ -45,13 +52,38 @@ class Repository(private val expenseDao: ExpenseDao) {
         return expenseDao.insertUserSignUp(userSignUp)
     }
 
+
+    suspend fun insertUserDonorForm(donorFormDetails: DonorFormDetails): Long {
+        return expenseDao.insertUserDonorForm(donorFormDetails)
+    }
+
     suspend fun updateUserStatus(status: String, id: Int): Int {
         return expenseDao.updateUserStatus(status, id)
     }
+
 
     suspend fun getuserLoginCheck(mobile: String, password: String): List<UserSignUp> {
         return expenseDao.getuserLoginCheck(mobile, password)
     }
 
+    suspend fun updateDonorFormStatus(status: String, id: Int): Int {
+        return expenseDao.updateDonorStatus(status, id)
+    }
+
+    suspend fun getDonorFormStatus(): List<DonorFormDetails>? {
+        return expenseDao.getDonorFormRequestDetails().value
+    }
+
+    suspend fun insertHospital(hospital: Hospital): Long {
+        return expenseDao.insertHospital(hospital)
+    }
+
+    suspend fun updateHospitalStatusResponse(status: String, id: Int): Int {
+        return expenseDao.updateHospitalStatusResponse(status, id)
+    }
+
+    suspend fun getHospitalDetails(): List<Hospital>? {
+        return expenseDao.getHospitalDetails().value
+    }
 
 }

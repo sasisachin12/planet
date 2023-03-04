@@ -3,6 +3,8 @@ package aaa.android.organdonation.viewmodel
 import aaa.android.organdonation.entity.ExpenseInfo
 import aaa.android.organdonation.entity.UserSignUp
 import aaa.android.organdonation.db.ExpenseRoomDatabase
+import aaa.android.organdonation.entity.DonorFormDetails
+import aaa.android.organdonation.entity.Hospital
 import aaa.android.organdonation.repository.Repository
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -21,18 +23,27 @@ class ExpenseViewModel(app: Application) : AndroidViewModel(app) {
     // - Repository is completely separated from the UI through the ViewModel.
     val allExpenses: LiveData<List<ExpenseInfo>>
     val allSignUpRequest: LiveData<List<UserSignUp>>
+    var allDonorRequest: LiveData<List<DonorFormDetails>>
     val currentData = CompletableDeferred<List<ExpenseInfo>>()
     val loginData = CompletableDeferred<List<UserSignUp>>()
     val insertResponse = CompletableDeferred<Long>()
+    val insertdonorformResponse = CompletableDeferred<Long>()
     val updateStatusResponse = CompletableDeferred<Int>()
-    val searchDataList : LiveData<List<UserSignUp>>
+    val updateDonorStatusResponse = CompletableDeferred<Int>()
+    val searchDataList: LiveData<List<UserSignUp>>
+    val alldonorFormList = CompletableDeferred<List<DonorFormDetails>>()
+    val allHospital = CompletableDeferred<List<Hospital>>()
+    val allUserdonorFormList = CompletableDeferred<List<DonorFormDetails>>()
+    var allHospitialRequest: LiveData<List<Hospital>>
 
     init {
         val wordsDao = ExpenseRoomDatabase.getDatabase(app, viewModelScope).expenseDao()
         repository = Repository(wordsDao)
         allExpenses = repository.allExpenses
         allSignUpRequest = repository.allSignUpRequest
+        allDonorRequest = repository.allDonorFomRequest
         searchDataList = repository.allSignUpRequest
+        allHospitialRequest = repository.getHospitalDetails
     }
 
     /**
@@ -54,7 +65,15 @@ class ExpenseViewModel(app: Application) : AndroidViewModel(app) {
         return insertResponse.await()
     }
 
-    suspend fun getExpense(): List<ExpenseInfo> {
+    suspend fun insertUserDonorForm(donorFormDetails: DonorFormDetails): Long {
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = repository.insertUserDonorForm(donorFormDetails)
+            insertdonorformResponse.complete(result)
+        }
+        return insertdonorformResponse.await()
+    }
+
+    suspend fun getAllDonor(): List<ExpenseInfo> {
         viewModelScope.launch(Dispatchers.IO) {
             val result = repository.getAll()
             currentData.complete(result)
@@ -72,20 +91,67 @@ class ExpenseViewModel(app: Application) : AndroidViewModel(app) {
     }
 
 
-    suspend fun updateUserStatus(status: String,id:Int): Int {
+    suspend fun updateUserStatus(status: String, id: Int): Int {
         viewModelScope.launch(Dispatchers.IO) {
-            val result = repository.updateUserStatus(status,id)
+            val result = repository.updateUserStatus(status, id)
             updateStatusResponse.complete(result)
         }
         return updateStatusResponse.await()
     }
 
-    suspend fun getuserLoginCheck(mobile:String,password:String): List<UserSignUp> {
+    suspend fun getuserLoginCheck(mobile: String, password: String): List<UserSignUp> {
         viewModelScope.launch(Dispatchers.IO) {
             val result = repository.getuserLoginCheck(mobile, password)
             loginData.complete(result)
         }
         return loginData.await()
+    }
+
+
+    suspend fun updateDonorStatusResponse(status: String, id: Int): Int {
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = repository.updateDonorFormStatus(status, id)
+            updateDonorStatusResponse.complete(result)
+        }
+        return updateDonorStatusResponse.await()
+    }
+
+
+    suspend fun getDonorAllFormResponse(): List<DonorFormDetails> {
+        viewModelScope.launch(Dispatchers.IO) {
+            val data = repository.getDonorFormStatus()
+            data?.let { alldonorFormList.complete(it) }
+
+        }
+        return alldonorFormList.await()
+    }
+
+
+
+
+    suspend fun insertHospital(hospital: Hospital): Long {
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = repository.insertHospital(hospital)
+            insertResponse.complete(result)
+        }
+        return insertResponse.await()
+    }
+
+    suspend fun updateHospitalStatusResponse(status: String, id: Int): Int {
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = repository.updateHospitalStatusResponse(status, id)
+            updateDonorStatusResponse.complete(result)
+        }
+        return updateDonorStatusResponse.await()
+    }
+
+    suspend fun getHospitalDetails(): List<Hospital> {
+        viewModelScope.launch(Dispatchers.IO) {
+            val data = repository.getHospitalDetails()
+            data?.let { allHospital.complete(it) }
+
+        }
+        return allHospital.await()
     }
 
 }

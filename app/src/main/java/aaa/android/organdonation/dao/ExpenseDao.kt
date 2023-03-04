@@ -1,6 +1,8 @@
 package aaa.android.organdonation.dao
 
+import aaa.android.organdonation.entity.DonorFormDetails
 import aaa.android.organdonation.entity.ExpenseInfo
+import aaa.android.organdonation.entity.Hospital
 import aaa.android.organdonation.entity.UserSignUp
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -32,7 +34,7 @@ interface ExpenseDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUserSignUp(userSignUp: UserSignUp): Long
 
-    @Query("SELECT * FROM user_signup_table where status='PV'")
+    @Query("SELECT * FROM user_signup_table")
     fun getAllUSerSignUp(): LiveData<List<UserSignUp>>
 
 
@@ -44,9 +46,30 @@ interface ExpenseDao {
     fun deleteByID(id: Int)
 
     @Query("UPDATE user_signup_table SET status =:status where id=:id")
-    fun updateUserStatus(status: String?,id:Int): Int
+    fun updateUserStatus(status: String?, id: Int): Int
 
 
     @Query("SELECT * FROM user_signup_table where mobile=:mobile AND password =:password")
-    fun getuserLoginCheck(mobile:String,password:String): List<UserSignUp>
+    fun getuserLoginCheck(mobile: String, password: String): List<UserSignUp>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertUserDonorForm(userSignUp: DonorFormDetails): Long
+
+    @Query("SELECT * FROM donor_form_details")
+    fun getDonorFormRequestDetails(): LiveData<List<DonorFormDetails>>
+
+
+    @Query("UPDATE donor_form_details SET status =:status where id=:id")
+    fun updateDonorStatus(status: String?, id: Int): Int
+
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertHospital(hospital: Hospital): Long
+
+    @Query("SELECT * FROM hospital where status='active'")
+    fun getHospitalDetails(): LiveData<List<Hospital>>
+
+    @Query("UPDATE hospital SET status =:status where id=:id")
+    fun updateHospitalStatusResponse(status: String?, id: Int): Int
+
 }
