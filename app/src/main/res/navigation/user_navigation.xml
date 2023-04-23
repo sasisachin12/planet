@@ -7,45 +7,45 @@
 
     <fragment
         android:id="@+id/userHomeFragment"
-        android:name="aaa.android.organdonation.user.UserHomeFragment"
+        android:name="aaa.android.plant.user.UserHomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_user_home" />
 
 
     <fragment
         android:id="@+id/userSignUpFragment"
-        android:name="aaa.android.organdonation.user.UserSignUpActivity"
+        android:name="aaa.android.plant.user.UserSignUpActivity"
         android:label="@string/menu_logout"
         tools:layout="@layout/fragment_user_sign_up" />
 
     <fragment
         android:id="@+id/userDonorFormFragment"
-        android:name="aaa.android.organdonation.user.UserDonorFormFragment"
+        android:name="aaa.android.plant.user.UserDonorFormFragment"
         android:label="Organ Donor Form"
         tools:layout="@layout/fragment_user_donation_form" />
 
     <fragment
         android:id="@+id/userStatisticsFragment"
-        android:name="aaa.android.organdonation.user.UserStatisticsFragment"
+        android:name="aaa.android.plant.user.UserStatisticsFragment"
         android:label="Donation Statistics "
         tools:layout="@layout/fragment_user_donation_form" />
 
     <fragment
         android:id="@+id/userFAQFragment"
-        android:name="aaa.android.organdonation.user.UserFAQFragment"
+        android:name="aaa.android.plant.user.UserFAQFragment"
         android:label="Donation FAQ "
         tools:layout="@layout/fragment_user_donation_form" />
 
 
     <fragment
         android:id="@+id/userHealthyProxyFragment"
-        android:name="aaa.android.organdonation.user.UserHealthyProxyFragment"
+        android:name="aaa.android.plant.user.UserHealthyProxyFragment"
         android:label="Healthy Proxy "
         tools:layout="@layout/fragment_user_donation_form" />
 
     <fragment
         android:id="@+id/userHomeStatusFragment"
-        android:name="aaa.android.organdonation.user.UserHomeStatusFragment"
+        android:name="aaa.android.plant.user.UserHomeStatusFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_user_home" />
 

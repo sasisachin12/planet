@@ -10,52 +10,52 @@
 
     <fragment
         android:id="@+id/adminHomeFragment"
-        android:name="aaa.android.organdonation.admin.AdminHomeFragment"
+        android:name="aaa.android.plant.admin.AdminHomeFragment"
         android:label="@string/admin"
         tools:layout="@layout/fragment_admin_home" />
     <fragment
         android:id="@+id/adminDonorDetailsFragment"
-        android:name="aaa.android.organdonation.admin.AdminDonorDetailsFragment"
+        android:name="aaa.android.plant.admin.AdminDonorDetailsFragment"
         android:label="Donor Request"
         tools:layout="@layout/fragment_admin_home" />
 
     <fragment
         android:id="@+id/adminViewAllVerifiedAccountFragment"
-        android:name="aaa.android.organdonation.admin.AdminViewAllVerifiedAccountFragment"
+        android:name="aaa.android.plant.admin.AdminViewAllVerifiedAccountFragment"
         android:label="Donor"
         tools:layout="@layout/fragment_admin_home" />
 
     <fragment
         android:id="@+id/adminViewAllAccountHomeFragment"
-        android:name="aaa.android.organdonation.admin.AdminViewAllAccountHomeFragment"
+        android:name="aaa.android.plant.admin.AdminViewAllAccountHomeFragment"
         android:label="Donor"
         tools:layout="@layout/fragment_admin_home" />
 
     <fragment
         android:id="@+id/hospitalAddFragment"
-        android:name="aaa.android.organdonation.admin.HospitalAddFragment"
+        android:name="aaa.android.plant.admin.HospitalAddFragment"
         android:label="@string/admin"
         tools:layout="@layout/fragment_admin_home" />
 
     <fragment
         android:id="@+id/hospitalViewFragment"
-        android:name="aaa.android.organdonation.admin.HospitalViewFragment"
+        android:name="aaa.android.plant.admin.HospitalViewFragment"
         android:label="@string/admin"
         tools:layout="@layout/fragment_admin_home" />
 
     <fragment
         android:id="@+id/hospitialDonorFormFragment"
-        android:name="aaa.android.organdonation.admin.HospitialDonorFormFragment"
+        android:name="aaa.android.plant.admin.HospitialDonorFormFragment"
         android:label="@string/admin"
         tools:layout="@layout/fragment_admin_home" />
     <fragment
         android:id="@+id/userHomeFragment"
-        android:name="aaa.android.organdonation.user.UserHomeFragment"
+        android:name="aaa.android.plant.user.UserHomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_user_home" />
     <fragment
         android:id="@+id/adminNotificationFragment"
-        android:name="aaa.android.organdonation.admin.AdminNotificationFragment"
+        android:name="aaa.android.plant.admin.AdminNotificationFragment"
         android:label="Notification"
         tools:layout="@layout/fragment_user_home" />
 

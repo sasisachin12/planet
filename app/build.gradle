@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    namespace 'aaa.android.organdonation'
+    namespace 'aaa.android.plant'
     compileSdk 33
 
     defaultConfig {
@@ -78,4 +78,9 @@ dependencies {
     implementation 'com.github.isradeleon:Notify-Android:1.0.5'
     implementation 'com.github.BoyzDroizy:SimpleAndroidBarChart:1.0.1'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+
+        implementation 'com.github.nguyenhoanglam:ImagePicker:1.5.5'
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+
 }
