@@ -1,6 +1,7 @@
 package aaa.android.plant
 
 import aaa.android.plant.admin.AdminLoginActivity
+import aaa.android.plant.admin.UserLoginActivity
 import aaa.android.plant.databinding.ActivitySpalshBinding
 import aaa.android.plant.imageupload.MainActivity
 import android.content.Intent
@@ -26,7 +27,7 @@ class SplashActivity : AppCompatActivity() {
 
 
         binding.btnUser.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, UserLoginActivity::class.java)
             startActivity(intent)
 
         }

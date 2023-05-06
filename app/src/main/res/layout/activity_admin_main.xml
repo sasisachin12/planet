@@ -26,6 +26,13 @@
             android:text="Choose Image" />
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/tv_plant_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Plant Name" />
+
+        <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/tv_disease_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,12 +53,49 @@
             android:layout_margin="8dp"
             android:hint="Plant disease Description"
             android:minLines="12" />
-
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/tv_disease_solutions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Disease solutions"
+            android:minLines="12" />
         <Button
             android:id="@+id/img_save"
             style="@style/Base.Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Save" />
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/tv_sms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:maxLength="10"
+            android:inputType="phone"
+            android:hint="Mobile Number" />
+        <Button
+            android:id="@+id/img_save_mobile"
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Savemobile" />
+
+
+        <Button
+            android:id="@+id/img_Logout"
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout" />
     </LinearLayout>
+
+
+
+
+
+
+
+
+
 </androidx.core.widget.NestedScrollView>

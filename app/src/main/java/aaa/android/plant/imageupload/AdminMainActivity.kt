@@ -4,7 +4,9 @@ import aaa.android.plant.databinding.ActivityAdminMainBinding
 import aaa.android.plant.entity.DiseaseInformation
 import aaa.android.plant.viewmodel.ExpenseViewModel
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
@@ -23,17 +25,18 @@ class AdminMainActivity : AppCompatActivity() {
     private lateinit var expenseViewModel: ExpenseViewModel
 
     private val insertResponse: MutableLiveData<Long> = MutableLiveData()
-   var inputData:ByteArray? = null
+    var inputData: ByteArray? = null
     private val launcher = registerImagePicker { images ->
         // Selected images are ready to use
-        if(images.isNotEmpty()){
+        if (images.isNotEmpty()) {
             val sampleImage = images[0]
             Glide.with(this)
                 .load(sampleImage.uri)
                 .into(binding.imageView)
-             inputData = contentResolver.openInputStream(sampleImage.uri)?.readBytes()
+            inputData = contentResolver.openInputStream(sampleImage.uri)?.readBytes()
         }
     }
+
     //private val expenseViewModel: ExpenseViewModel by viewModelFactory {  }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,8 +48,24 @@ class AdminMainActivity : AppCompatActivity() {
 
             launcher.launch()
         }
+        val sharedPref: SharedPreferences =
+            getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)!!
+        val oldParentMobileNumber = sharedPref.getString("PARENT_MOBILE", "")
+        binding.tvSms.setText(oldParentMobileNumber.toString())
+        binding.imgSaveMobile.setOnClickListener {
+            val mobile = binding.tvSms.text.toString()
+            with(sharedPref.edit()) {
+                putString("PARENT_MOBILE", mobile)
 
-       expenseViewModel = ViewModelProvider(this)[ExpenseViewModel::class.java]
+                apply()
+            }
+            Toast.makeText(this, "Mobile Number updated Successfully", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.imgLogout.setOnClickListener {
+            this.finish()
+        }
+        expenseViewModel = ViewModelProvider(this)[ExpenseViewModel::class.java]
 
         insertResponse.observe(
             this
@@ -54,15 +73,16 @@ class AdminMainActivity : AppCompatActivity() {
             Toast.makeText(this, "Disease details added successfully ", Toast.LENGTH_SHORT).show()
 
         }
-       binding.imgSave.setOnClickListener {
+        binding.imgSave.setOnClickListener {
             val disease = binding?.tvDiseaseName?.text.toString().trim()
             val diseaseName = binding?.tvDiseaseDescription?.text.toString().trim()
             val diseaseStage = binding?.tvDiseaseStage?.text.toString().trim()
-
+            val diseasesolutions = binding?.tvDiseaseSolutions?.text.toString().trim()
+            val plantName = binding?.tvPlantName?.text.toString().trim()
 
 
             val diseaseInformation = DiseaseInformation(
-                null, disease, diseaseName, diseaseStage, "", "PV", inputData
+                null, disease, diseaseName, diseaseStage, diseasesolutions, plantName, inputData
             )
 
             lifecycleScope.launchWhenResumed {

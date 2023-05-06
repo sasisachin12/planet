@@ -33,8 +33,8 @@ class SignUpAcceptListAdapter internal constructor(
         val item = expenseList[position]
 
         if (item is DiseaseInformation) {
-            holder.name.text = item.name
-            holder.description.text = item.mobile
+            holder.name.text = " Plant Name:"+ item.status +" \n Disease Name : "+item.name
+            holder.description.text = item.mobile + "\n  Solutions : \n "+item.password
 
         }
 

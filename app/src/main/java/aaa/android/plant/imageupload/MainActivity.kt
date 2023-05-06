@@ -5,7 +5,9 @@ import aaa.android.plant.databinding.ActivityImageMainBinding
 import aaa.android.plant.entity.DiseaseInformation
 import aaa.android.plant.viewmodel.ExpenseViewModel
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -59,6 +61,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityImageMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        val sharedPref: SharedPreferences =
+            getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)!!
+
+
+        val alertNumber = sharedPref.getString("PARENT_MOBILE", "")
+        binding.imgSms.setOnClickListener {
+            val modalBottomSheet = ModalBottomSheet()
+            modalBottomSheet.show(supportFragmentManager, ModalBottomSheet.TAG)
+        }
 
         binding.imgPickBtn.setOnClickListener {
             launcher.launch()
