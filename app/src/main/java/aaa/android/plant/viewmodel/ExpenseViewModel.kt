@@ -2,6 +2,7 @@ package aaa.android.plant.viewmodel
 
 import aaa.android.plant.db.ApplicationRoomDatabase
 import aaa.android.plant.entity.DiseaseInformation
+import aaa.android.plant.entity.SearchHistoryDiseaseInformation
 import aaa.android.plant.repository.Repository
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -16,6 +17,7 @@ class ExpenseViewModel(app: Application) : AndroidViewModel(app) {
 
 
     val allSignUpRequest: LiveData<List<DiseaseInformation>>
+    val searchRequest: LiveData<List<SearchHistoryDiseaseInformation>>
 
     val loginData = CompletableDeferred<List<DiseaseInformation>>()
     val insertResponse = CompletableDeferred<Long>()
@@ -30,7 +32,7 @@ class ExpenseViewModel(app: Application) : AndroidViewModel(app) {
         repository = Repository(wordsDao)
 
         allSignUpRequest = repository.allSignUpRequest
-
+        searchRequest =repository.allSearchHistoryRequest
         searchDataList = repository.allSignUpRequest
 
     }
@@ -50,14 +52,21 @@ class ExpenseViewModel(app: Application) : AndroidViewModel(app) {
 
 
 
-
-
-
-
-
-    suspend fun updateUserStatus(status: String, id: Int): Int {
+    suspend fun insertSearchHistory(diseaseInformation: SearchHistoryDiseaseInformation): Long {
         viewModelScope.launch(Dispatchers.IO) {
-            val result = repository.updateUserStatus(status, id)
+            val result = repository.insertSearchHistory(diseaseInformation)
+            insertResponse.complete(result)
+        }
+        return insertResponse.await()
+    }
+
+
+
+
+
+    suspend fun updateUserStatus(diseaseInformation: DiseaseInformation): Int {
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = repository.updateUserStatus(diseaseInformation)
             updateStatusResponse.complete(result)
         }
         return updateStatusResponse.await()
@@ -75,7 +84,13 @@ class ExpenseViewModel(app: Application) : AndroidViewModel(app) {
 
 
 
+    suspend fun deleteByID(id: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getDeleteById(id)
 
+        }
+
+    }
 
 
 

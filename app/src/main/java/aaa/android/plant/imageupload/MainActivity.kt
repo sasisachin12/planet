@@ -3,6 +3,7 @@ package aaa.android.plant.imageupload
 import aaa.android.plant.adapter.SignUpAcceptListAdapter
 import aaa.android.plant.databinding.ActivityImageMainBinding
 import aaa.android.plant.entity.DiseaseInformation
+import aaa.android.plant.entity.SearchHistoryDiseaseInformation
 import aaa.android.plant.viewmodel.ExpenseViewModel
 import android.app.Activity
 import android.content.Context
@@ -16,9 +17,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.nguyenhoanglam.imagepicker.ui.imagepicker.registerImagePicker
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +35,8 @@ class MainActivity : AppCompatActivity() {
     val newRequest = mutableListOf<DiseaseInformation>()
     var inputData: ByteArray? = null
     var adapter: SignUpAcceptListAdapter? = null
+    var userName = ""
+    var password = ""
     private val launcher = registerImagePicker { images ->
         // Selected images are ready to use
         if (images.isNotEmpty()) {
@@ -41,6 +48,34 @@ class MainActivity : AppCompatActivity() {
             Log.e(" aaa ", "" + newRequest?.size)
             val dataresult = newRequest.filter { it.data.contentEquals(inputData) }.toMutableList()
             Log.e(" aaa ", "" + dataresult?.size)
+
+            val sdf = SimpleDateFormat("dd/MM/yyyy hh:mm:ss", Locale.getDefault())
+            val currentDate = sdf.format(Date())
+            dataresult.forEach {
+                lifecycleScope.launchWhenResumed {
+                    val data = SearchHistoryDiseaseInformation(
+                        id = null,
+                        name = it.name,
+                        email = it.email,
+                        mobile = it.email,
+                        password = it.password,
+                        status = it.status,
+                        data = it.data,
+                        username = userName,
+                        usermobile = password,
+                        date = currentDate
+
+                    )
+                    expenseViewModel.insertSearchHistory(data)
+                }
+            }
+
+
+
+
+
+
+
             adapter = SignUpAcceptListAdapter(this)
             binding.rvResults.adapter = adapter
             binding.rvResults.layoutManager = LinearLayoutManager(this)
@@ -64,6 +99,10 @@ class MainActivity : AppCompatActivity() {
         val sharedPref: SharedPreferences =
             getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)!!
 
+        val sharedPreferences = getSharedPreferences("LoginInfo", MODE_PRIVATE)
+
+        userName = sharedPreferences.getString("userName", "").toString()
+        password = sharedPreferences.getString("password", "").toString()
 
         val alertNumber = sharedPref.getString("PARENT_MOBILE", "")
         binding.imgSms.setOnClickListener {

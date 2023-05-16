@@ -1,14 +1,11 @@
 package aaa.android.plant.admin
 
-import aaa.android.plant.databinding.FragmentHomeBinding
 import aaa.android.plant.databinding.FragmentUserLoginBinding
-import aaa.android.plant.imageupload.AdminMainActivity
 import aaa.android.plant.imageupload.MainActivity
-import aaa.android.plant.util.AppConstant
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -18,21 +15,24 @@ class UserLoginActivity : AppCompatActivity() {
     private lateinit var binding: FragmentUserLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-         //setContentView(R.layout.fragment_home)
+        //setContentView(R.layout.fragment_home)
         binding = FragmentUserLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding?.btnLogin?.setOnClickListener {
             val userName = binding?.edtUserName?.text.toString().trim()
             val userPassWord = binding?.edtUserPassword?.text.toString().trim()
-            if (
-                userName == userPassWord
-            ) {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            } else {
-                Toast.makeText(this, "Invalid Data", Toast.LENGTH_SHORT).show()
-            }
+
+
+            val sharedPreferences = getSharedPreferences("LoginInfo", MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString("userName", userName)
+            editor.putString("password", userName)
+            editor.apply()
+
+
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
 
 
         }

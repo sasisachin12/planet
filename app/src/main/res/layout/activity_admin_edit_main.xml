@@ -66,33 +66,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Save" />
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/tv_sms"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:maxLength="10"
-            android:inputType="phone"
-            android:hint="Mobile Number" />
-        <Button
-            android:id="@+id/img_save_mobile"
-            style="@style/Base.Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Save Mobile" />
-        <Button
-            android:id="@+id/img_edit_delete"
-            style="@style/Base.Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View,Edit,Delete" />
 
-        <Button
-            android:id="@+id/img_Logout"
-            style="@style/Base.Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Logout" />
+
     </LinearLayout>
 
 

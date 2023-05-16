@@ -3,6 +3,7 @@ package aaa.android.plant.db
 import aaa.android.plant.dao.ExpenseDao
 
 import aaa.android.plant.entity.DiseaseInformation
+import aaa.android.plant.entity.SearchHistoryDiseaseInformation
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
@@ -13,8 +14,8 @@ import kotlinx.coroutines.launch
 
 
 @Database(
-    entities = arrayOf(DiseaseInformation::class),
-    version = 2,
+    entities = arrayOf(DiseaseInformation::class, SearchHistoryDiseaseInformation::class ),
+    version = 3,
     exportSchema = false
 )
 

@@ -6,17 +6,11 @@ import aaa.android.plant.util.utils.convertDateToLong
 import aaa.android.plant.util.utils.getCurrentMonthEnd
 import aaa.android.plant.util.utils.getCurrentMonthStart
 import aaa.android.plant.dao.ExpenseDao
+import aaa.android.plant.entity.SearchHistoryDiseaseInformation
 
 import androidx.lifecycle.LiveData
 
 class Repository(private val expenseDao: ExpenseDao) {
-
-    // Room executes all queries on a separate thread.
-    // Observed LiveData will notify the observer when the data has changed.
-
-
-    val startDate = convertDateToLong(getCurrentMonthStart(), DATE_FORMAT_ONE)
-    val endDate = convertDateToLong(getCurrentMonthEnd(), DATE_FORMAT_ONE)
 
 
 
@@ -24,7 +18,8 @@ class Repository(private val expenseDao: ExpenseDao) {
         expenseDao.getAllUSerSignUp()
 
 
-
+    val allSearchHistoryRequest: LiveData<List<SearchHistoryDiseaseInformation>> =
+        expenseDao.getAllSearchHistory()
 
 
 
@@ -35,11 +30,21 @@ class Repository(private val expenseDao: ExpenseDao) {
         return expenseDao.insertUserSignUp(diseaseInformation)
     }
 
+    suspend fun insertSearchHistory(diseaseInformation: SearchHistoryDiseaseInformation): Long {
+        return expenseDao.insertSearchHistory(diseaseInformation)
+    }
 
 
+    suspend fun updateUserStatus(diseaseInformation: DiseaseInformation): Int {
 
-    suspend fun updateUserStatus(status: String, id: Int): Int {
-        return expenseDao.updateUserStatus(status, id)
+        val id=diseaseInformation.id
+        val name=diseaseInformation.name
+        val email=diseaseInformation.email
+        val mobile=diseaseInformation.mobile
+        val password=diseaseInformation.password
+        val status=diseaseInformation.status
+        val data=diseaseInformation.data
+        return expenseDao.updateUserStatus(id,name,email,mobile,password,status,data)
     }
 
 
@@ -48,6 +53,9 @@ class Repository(private val expenseDao: ExpenseDao) {
     }
 
 
+    suspend fun getDeleteById(id: Int) {
+        expenseDao.deleteByID(id)
+    }
 
 
 

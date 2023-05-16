@@ -1,5 +1,6 @@
 package aaa.android.plant.admin
 
+import aaa.android.plant.databinding.FragmentHomeAgricultureBinding
 import aaa.android.plant.databinding.FragmentHomeBinding
 import aaa.android.plant.imageupload.AdminMainActivity
 import aaa.android.plant.imageupload.ViewAddedMainActivity
@@ -9,12 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 
-class AdminLoginActivity : AppCompatActivity() {
-    private lateinit var binding: FragmentHomeBinding
+class AgricultureLoginActivity : AppCompatActivity() {
+    private lateinit var binding: FragmentHomeAgricultureBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
          //setContentView(R.layout.fragment_home)
-        binding = FragmentHomeBinding.inflate(layoutInflater)
+        binding = FragmentHomeAgricultureBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding?.btnLogin?.setOnClickListener {
             val userName = binding?.edtUserName?.text.toString().trim()
@@ -22,7 +23,7 @@ class AdminLoginActivity : AppCompatActivity() {
             if (userName.lowercase() == AppConstant.ADMIN_USER_NAME.lowercase() &&
                 userPassWord.lowercase() == AppConstant.ADMIN_USER_PASSWORD.lowercase()
             ) {
-                val intent = Intent(this, AdminMainActivity::class.java)
+                val intent = Intent(this, AgricultureMainActivity::class.java)
                 startActivity(intent)
                 finish()
             } else {

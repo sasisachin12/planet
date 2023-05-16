@@ -1,6 +1,6 @@
 package aaa.android.plant.imageupload
 
-import aaa.android.plant.databinding.ActivityAdminMainBinding
+import aaa.android.plant.databinding.ActivityAdminEditMainBinding
 import aaa.android.plant.entity.DiseaseInformation
 import aaa.android.plant.viewmodel.ExpenseViewModel
 import android.app.Activity
@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -18,8 +19,8 @@ import com.bumptech.glide.Glide
 import com.nguyenhoanglam.imagepicker.ui.imagepicker.registerImagePicker
 
 
-class AdminMainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityAdminMainBinding
+class AdminEditMainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityAdminEditMainBinding
 
 
     private lateinit var expenseViewModel: ExpenseViewModel
@@ -40,7 +41,7 @@ class AdminMainActivity : AppCompatActivity() {
     //private val expenseViewModel: ExpenseViewModel by viewModelFactory {  }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAdminMainBinding.inflate(layoutInflater)
+        binding = ActivityAdminEditMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
@@ -48,35 +49,28 @@ class AdminMainActivity : AppCompatActivity() {
 
             launcher.launch()
         }
-        binding.imgEditDelete.setOnClickListener {
 
-            val intent = Intent(this, ViewAddedMainActivity::class.java)
-            startActivity(intent)
-        }
+        val item: DiseaseInformation =
+            intent.getParcelableExtra<DiseaseInformation>("item")!! as DiseaseInformation
+        binding.tvDiseaseName.setText(item.name)
+        binding.tvDiseaseDescription.setText(item.email)
+        binding.tvDiseaseStage.setText(item.mobile)
+        binding.tvDiseaseSolutions.setText(item.password)
+        binding.tvPlantName.setText(item.status)
+        val bitmap = item.data?.size?.let { BitmapFactory.decodeByteArray(item.data, 0, it) }
+        binding.imageView.setImageBitmap(bitmap)
+        inputData = item.data
         val sharedPref: SharedPreferences =
             getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)!!
         val oldParentMobileNumber = sharedPref.getString("PARENT_MOBILE", "")
-        binding.tvSms.setText(oldParentMobileNumber.toString())
-        binding.imgSaveMobile.setOnClickListener {
-            val mobile = binding.tvSms.text.toString()
-            with(sharedPref.edit()) {
-                putString("PARENT_MOBILE", mobile)
 
-                apply()
-            }
-            Toast.makeText(this, "Mobile Number updated Successfully", Toast.LENGTH_SHORT).show()
-        }
-
-        binding.imgLogout.setOnClickListener {
-            this.finish()
-        }
         expenseViewModel = ViewModelProvider(this)[ExpenseViewModel::class.java]
 
         insertResponse.observe(
             this
         ) {
-            Toast.makeText(this, "Disease details added successfully ", Toast.LENGTH_SHORT).show()
-
+            Toast.makeText(this, "Disease details Updated successfully ", Toast.LENGTH_SHORT).show()
+            finish()
         }
         binding.imgSave.setOnClickListener {
             val disease = binding?.tvDiseaseName?.text.toString().trim()
@@ -87,12 +81,14 @@ class AdminMainActivity : AppCompatActivity() {
 
 
             val diseaseInformation = DiseaseInformation(
-                null, disease, diseaseName, diseaseStage, diseasesolutions, plantName, inputData
+                item.id, disease, diseaseName, diseaseStage, diseasesolutions, plantName, inputData
             )
 
             lifecycleScope.launchWhenResumed {
 
-                insertResponse.postValue(expenseViewModel.insertSignUp(diseaseInformation))
+                insertResponse.postValue(
+                    expenseViewModel.updateUserStatus(diseaseInformation).toLong()
+                )
             }
 
         }
